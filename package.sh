@@ -13,31 +13,33 @@ else
 fi
 
 package="mt7601u"
+base_dir="./"
 
-if [ -f ./src/os/linux/mt7601Usta.ko ] ; then
-	cp -v ./src/os/linux/mt7601Usta.ko ./
-	cp -v ./src/RT2870STA.dat ./
-	cp -v ./src/README_STA_usb ./
+if [ -f ${base_dir}src/os/linux/mt7601Usta.ko ] ; then
 
-	echo "mt7601Usta" > ./mt7601.conf
+	cp -v ${base_dir}src/os/linux/mt7601Usta.ko ${base_dir}
+	cp -v ${base_dir}src/RT2870STA.dat ${base_dir}
+	cp -v ${base_dir}src/README_STA_usb ${base_dir}
 
-	echo "Section: misc" > ./control
-	echo "Priority: optional" >> ./control
-	echo "Homepage: https://github.com/rcn-ee/${package}" >> ./control
-	echo "Standards-Version: 3.9.2" >> ./control
-	echo "" >> ./control
-	echo "Package: ${package}-modules-${uname_r}" >> ./control
-	echo "Version: 1${distro}" >> ./control
-	echo "Pre-Depends: linux-image-${uname_r}" >> ./control
-	echo "Maintainer: Robert Nelson <robertcnelson@gmail.com>" >> ./control
-	echo "Architecture: ${dpkg_arch}" >> ./control
-	echo "Readme: README_STA_usb" >> ./control
-	echo "Files: mt7601Usta.ko /lib/modules/${uname_r}/kernel/drivers/net/wireless/" >> ./control
-	echo " RT2870STA.dat /etc/Wireless/RT2870STA/" >> ./control
-	echo " mt7601.conf /etc/modules-load.d/" >> ./control
-	echo "Description: ${package} modules" >> ./control
-	echo " Kernel modules for ${package} devices" >> ./control
-	echo "" >> ./control
+	echo "mt7601Usta" > ${base_dir}mt7601.conf
+
+	echo "Section: misc" > ${base_dir}control
+	echo "Priority: optional" >> ${base_dir}control
+	echo "Homepage: https://github.com/rcn-ee/${package}" >> ${base_dir}control
+	echo "Standards-Version: 3.9.2" >> ${base_dir}control
+	echo "" >> ${base_dir}control
+	echo "Package: ${package}-modules-${uname_r}" >> ${base_dir}control
+	echo "Version: 1${distro}" >> ${base_dir}control
+	echo "Pre-Depends: linux-image-${uname_r}" >> ${base_dir}control
+	echo "Maintainer: Robert Nelson <robertcnelson@gmail.com>" >> ${base_dir}control
+	echo "Architecture: ${dpkg_arch}" >> ${base_dir}control
+	echo "Readme: README_STA_usb" >> ${base_dir}control
+	echo "Files: mt7601Usta.ko /lib/modules/${uname_r}/kernel/drivers/net/wireless/" >> ${base_dir}control
+	echo " RT2870STA.dat /etc/Wireless/RT2870STA/" >> ${base_dir}control
+	echo " mt7601.conf /etc/modules-load.d/" >> ${base_dir}control
+	echo "Description: ${package} modules" >> ${base_dir}control
+	echo " Kernel modules for ${package} devices" >> ${base_dir}control
+	echo "" >> ${base_dir}control
 
 	equivs-build control
 
