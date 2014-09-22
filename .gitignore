@@ -4,9 +4,9 @@ src/os/linux/Makefile
 src/tools/bin2h
 
 #build
-os/linux/.mt7601Usta.ko.cmd
-os/linux/.tmp_versions/
-os/linux/Module.symvers
-os/linux/modules.order
-os/linux/mt7601Usta.ko
-os/linux/mt7601Usta.mod.c
+src/os/linux/.mt7601Usta.ko.cmd
+src/os/linux/.tmp_versions/
+src/os/linux/Module.symvers
+src/os/linux/modules.order
+src/os/linux/mt7601Usta.ko
+src/os/linux/mt7601Usta.mod.c
