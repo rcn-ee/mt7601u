@@ -1,0 +1,4 @@
+*.o
+*.o.cmd
+src/os/linux/Makefile
+src/tools/bin2h
