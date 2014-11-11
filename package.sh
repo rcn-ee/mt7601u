@@ -21,7 +21,7 @@ if [ -f ${base_dir}src/os/linux/mt7601Usta.ko ] ; then
 	cp -v ${base_dir}src/RT2870STA.dat ${base_dir}
 	cp -v ${base_dir}src/README_STA_usb ${base_dir}
 
-	echo "mt7601Usta" > ${base_dir}mt7601.conf
+	#echo "mt7601Usta" > ${base_dir}mt7601.conf
 
 	echo "Section: misc" > ${base_dir}control
 	echo "Priority: optional" >> ${base_dir}control
@@ -46,6 +46,6 @@ if [ -f ${base_dir}src/os/linux/mt7601Usta.ko ] ; then
 	rm -rf mt7601Usta.ko || true
 	rm -rf RT2870STA.dat || true
 	rm -rf README_STA_usb || true
-	rm -rf mt7601.conf || true
+	#rm -rf mt7601.conf || true
 	rm -rf control || true
 fi
