@@ -150,7 +150,7 @@ HAS_BGFP_SUPPORT=n
 HAS_BGFP_OPEN_SUPPORT=n
 
 # Support HOSTAPD function
-HAS_HOSTAPD_SUPPORT=n
+HAS_HOSTAPD_SUPPORT=y
 
 #Support GreenAP function
 HAS_GREENAP_SUPPORT=n
@@ -290,7 +290,7 @@ endif
 # config for STA mode
 
 ifeq ($(RT28xx_MODE),STA)
-WFLAGS += -DCONFIG_STA_SUPPORT -DSCAN_SUPPORT -DDBG
+WFLAGS += -DCONFIG_STA_SUPPORT -DSCAN_SUPPORT
 
 ifeq ($(HAS_XLINK),y)
 WFLAGS += -DXLINK_SUPPORT
@@ -1054,11 +1054,16 @@ CFLAGS := -D__KERNEL__ -I$(LINUX_SRC)/include -Wall -O2 -Wundef -Wstrict-prototy
 export CFLAGS
 endif
 
+GCCVERSION = $(shell gcc -dumpversion)
+
 ifeq ($(PLATFORM),PC)
     ifneq (,$(findstring 2.4,$(LINUX_SRC)))
 	# Linux 2.4
 	CFLAGS := -D__KERNEL__ -I$(LINUX_SRC)/include -O2 -fomit-frame-pointer -fno-strict-aliasing -fno-common -pipe -mpreferred-stack-boundary=2 -march=i686 -DMODULE -DMODVERSIONS -include $(LINUX_SRC)/include/linux/modversions.h $(WFLAGS)
 	export CFLAGS
+    else ifneq (,$(findstring 4.9,$(GCCVERSION)))
+	# GCC 4.9
+        EXTRA_CFLAGS := -Wno-error=date-time $(WFLAGS)
     else
 	# Linux 2.6
 	EXTRA_CFLAGS := $(WFLAGS) 

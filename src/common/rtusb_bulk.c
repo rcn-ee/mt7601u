@@ -1585,7 +1585,9 @@ VOID	RTUSBCancelPendingBulkInIRP(
 
 	if (pCmdRspEventContext->IRPPending == TRUE)
 	{
+#ifdef DBG
 		printk("unlink cmd rsp urb\n");
+#endif /* DBG */
 		RTUSB_UNLINK_URB(pCmdRspEventContext->pUrb);
 		pCmdRspEventContext->IRPPending = FALSE;
 		pCmdRspEventContext->InUse = FALSE;

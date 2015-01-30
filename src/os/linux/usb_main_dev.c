@@ -516,7 +516,9 @@ static int rt2870_resume(
 /* Init driver module */
 INT __init rtusb_init(void)
 {
+#ifdef DBG
 	printk("rtusb init %s --->\n", RTMP_DRV_NAME);
+#endif /* DBG */
 	return usb_register(&rtusb_driver);
 }
 
@@ -524,7 +526,9 @@ INT __init rtusb_init(void)
 VOID __exit rtusb_exit(void)
 {
 	usb_deregister(&rtusb_driver);	
+#ifdef DBG
 	printk("<--- rtusb exit\n");
+#endif /* DBG */
 }
 
 module_init(rtusb_init);

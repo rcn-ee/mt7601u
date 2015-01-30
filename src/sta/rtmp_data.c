@@ -1593,15 +1593,18 @@ if (0){
 		INC_COUNTER64(pAd->WlanCounters.ReceivedFragmentCount);
 #endif /* STATS_COUNT_SUPPORT */
 
-		if (pRxWI->RxWIMPDUByteCnt < 14)
-		{
-			Status = NDIS_STATUS_FAILURE;
-			continue;
-		}
-
 		if (MONITOR_ON(pAd))
 		{
 			STA_MonPktSend(pAd, &RxBlk);
+			continue;
+		}
+
+		if (pRxWI->RxWIMPDUByteCnt < 14)
+		{
+			Status = NDIS_STATUS_FAILURE;
+			//Need to call RELEASE_NDIS_PACKET to release pRxPacket??
+			//XXX temp fix for monitor mode memory leak.
+			//Credit http://blog.csdn.net/luotong86/article/details/39957605
 			continue;
 		}
 
