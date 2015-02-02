@@ -5763,7 +5763,9 @@ VOID RTMPIoctlShow(
             wrq->u.data.length = strlen(extra) + 1; /* 1: size of '\0' */
             break;
         case SHOW_DRVIER_VERION:
+#ifdef DBG
             snprintf(extra, size, "Driver version-%s, %s %s\n", STA_DRIVER_VERSION, __DATE__, __TIME__ );
+#endif
             wrq->u.data.length = strlen(extra) + 1; /* 1: size of '\0' */
             break;
 #ifdef DOT11_N_SUPPORT
@@ -5982,7 +5984,8 @@ RtmpIoctl_rt_ioctl_siwfreq(
 	RT_CMD_STA_IOCTL_FREQ *pIoctlFreq = (RT_CMD_STA_IOCTL_FREQ *)pData;
 	int 	chan = -1;
 	ULONG	freq;
-	
+	STRING	ChStr[5] = {0};
+
 	if ( pIoctlFreq->m > 100000000 )
 		freq = pIoctlFreq->m / 100000;
 	else if ( pIoctlFreq->m > 100000 )
@@ -6008,7 +6011,6 @@ RtmpIoctl_rt_ioctl_siwfreq(
 	    DBGPRINT(RT_DEBUG_ERROR, ("==>rt_ioctl_siwfreq::SIOCSIWFREQ(Channel=%d)\n", pAd->CommonCfg.Channel));
 
 	    //Update channel setting to hw
-	    STRING	ChStr[5] = {0};
 	    snprintf(ChStr, sizeof(ChStr), "%d", chan);
 	    Set_Channel_Proc(pAd, ChStr);
 	    DBGPRINT(RT_DEBUG_ERROR, ("==>rt_ioctl_siwfreq::SIOCSIWFREQ(Channel=%d) Set_Channel_Proc\n", pAd->CommonCfg.Channel));

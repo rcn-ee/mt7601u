@@ -2120,10 +2120,12 @@ VOID AsicAddPairwiseKeyEntry(
 {
 	INT i;
 	ULONG 		offset;
-	PUCHAR		 pKey = pCipherKey->Key;
 	PUCHAR		 pTxMic = pCipherKey->TxMic;
 	PUCHAR		 pRxMic = pCipherKey->RxMic;
+#ifdef DBG
+	PUCHAR		 pKey = pCipherKey->Key;
 	UCHAR		CipherAlg = pCipherKey->CipherAlg;
+#endif /* DBG*/
 
 	/* EKEY*/
 	offset = PAIRWISE_KEY_TABLE_BASE + (WCID * HW_KEY_ENTRY_SIZE);

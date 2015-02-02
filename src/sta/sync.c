@@ -178,7 +178,9 @@ VOID MlmeForceJoinReqAction(
 	UCHAR         ExtRateLen;	
 	UCHAR         ASupRate[] = {0x8C, 0x12, 0x98, 0x24, 0xb0, 0x48, 0x60, 0x6C};
 	UCHAR         ASupRateLen = sizeof(ASupRate)/sizeof(UCHAR);	
+#ifdef DBG
 	MLME_JOIN_REQ_STRUCT *pInfo = (MLME_JOIN_REQ_STRUCT *)(Elem->Msg);
+#endif
 
 #ifdef CONFIG_PM
 #ifdef USB_SUPPORT_SELECTIVE_SUSPEND
@@ -2159,7 +2161,7 @@ VOID PeerBeacon(
 											ie_list->HtCapabilityLen, 
 											&ie_list->AddHtInfo,
 											ie_list->AddHtInfoLen,
-											ielist,
+											&ielist,
 											ie_list->CapabilityInfo);
 
 					os_free_mem(NULL, ielist);
@@ -2177,7 +2179,7 @@ VOID PeerBeacon(
 											ie_list->HtCapabilityLen, 
 											&ie_list->AddHtInfo,
 											ie_list->AddHtInfoLen,
-											ie_list,
+											&ie_list,
 											ie_list->CapabilityInfo) == FALSE)
 					{
 						DBGPRINT(RT_DEBUG_TRACE, ("ADHOC - Add Entry failed.\n"));

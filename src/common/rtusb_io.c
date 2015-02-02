@@ -679,7 +679,6 @@ NTSTATUS RTUSBWriteEEPROM(
 	IN	USHORT			length)
 {
 	NTSTATUS	Status = STATUS_SUCCESS;
-	USHORT Value;
 
 	Status = RTUSB_VendorRequest(
 				pAd,
